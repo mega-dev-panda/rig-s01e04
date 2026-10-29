@@ -6,6 +6,7 @@ import { Layout } from './views/layout.js';
 import { StatusBoard } from './views/status.js';
 import { readNight } from './digest/reader.js';
 import { registerDigestPage } from './digest/page-route.js';
+import { registerDigestJson } from './digest/json-route.js';
 
 export function createApp(config: RigConfig = loadConfig()) {
   const app = new Hono();
@@ -21,6 +22,7 @@ export function createApp(config: RigConfig = loadConfig()) {
   );
 
   registerDigestPage(app, config, readNight);
+  registerDigestJson(app, config, readNight);
 
   return app;
 }
