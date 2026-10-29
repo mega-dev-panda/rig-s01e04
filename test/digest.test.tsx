@@ -46,8 +46,8 @@ describe('digest routes', () => {
     expect(html).toContain('zeta');
     expect(html.indexOf('alpha')).toBeLessThan(html.indexOf('zeta'));
     expect(html).toContain('could not finish');
-    expect(html).toMatch(/retry|warning/i);
-    expect(html).toMatch(/fail|warning/i);
+    expect(html).toMatch(/class="warn">3<\/span>/);
+    expect(html).toMatch(/class="warn">fail<\/span>/);
 
     const jsonResponse = await app.request('/api/digest/2026-10-28');
     expect(jsonResponse.status).toBe(200);
@@ -61,7 +61,8 @@ describe('digest routes', () => {
       ],
     });
     const jobsInJson = (result as { rows: { job: string }[] }).rows.map((row) => row.job);
-    const jobsInHtml = ['alpha', 'zeta'].filter((job) => html.includes(job));
+    const tableBody = /<tbody>(.*?)<\/tbody>/s.exec(html)?.[1] ?? '';
+    const jobsInHtml = [...tableBody.matchAll(/<tr><td>(.*?)<\/td>/g)].map((match) => match[1]);
     expect(jobsInHtml).toEqual(jobsInJson);
   });
 
