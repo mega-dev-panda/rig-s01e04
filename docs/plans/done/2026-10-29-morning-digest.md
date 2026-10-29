@@ -93,4 +93,6 @@ Done when: the preview link no longer shows the lane marker.
 ## Completion record
 
 Review received. The template sample-data preview is https://mega-dev-rig-s01e04.exe.xyz/digest-2026-10-28.html.
-The final page must show “no marker set”. The marker-free overwrite is pending human approval; no upload evidence is recorded.
+The human approved the marker-free overwrite. The same public URL now returns HTTP 200 and shows “no marker set”. The sample data is unchanged, and the lane marker is absent.
+
+Verified SHA-256: `34347bde4ecf59e294550a95deadb3b5499a05f8d3835d3f04d9bb3774bcc28a`.
